@@ -16,6 +16,16 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    @if(Session::has('novo'))
+                        <div class="alert alert-success">{{ Session::get('novo') }}</div>
+                    @endif
+                    @if(Session::has('editado'))
+                        <div class="alert alert-success">{{ Session::get('editado') }}</div>
+                    @endif
+                    
+                    @if(Session::has('deletado'))
+                        <div class="alert alert-success">{{ Session::get('deletado') }}</div>
+                    @endif
                     
                     <div class="x_content">
                     <table class="table">
@@ -33,15 +43,15 @@
                           <td>R${{ $produto->valor }}</td>
                           <td>{{ $produto->categoria }}</td>
                         <td>
-                            <a href="{{ URL::to('produtos/' . $produto->id . '/show') }}" class="btn btn-xs btn-primary">
-                              <i class="fa fa-eye"></i>Detalhes
+                            <a href="{{ URL::to('produtos/' . $produto->id) }}" class="btn btn-xs btn-primary">
+                              Detalhes
                             </a>
                             <a href="{{ URL::to('produtos/' . $produto->id . '/edit') }}" class="btn btn-xs btn-warning">
-                              <i class="fa fa-pencil"></i>Editar
-                            </a>
-                            <a href="" class="btn btn-xs btn-danger">
-                              <i class="fa fa-trash"></i>Excluir
-                            </a>
+                              Editar
+                            </a>                    
+                            {!! Form::open(['method' => 'DELETE', 'url' => 'produtos/' . $produto->id, 'style' => 'display: inline' ]) !!}
+                                <button type="submit" class="btn btn-xs btn-danger">Excluir</button>
+                            {!! Form::close() !!}
                         </td>
                         </tr>
                       @endforeach

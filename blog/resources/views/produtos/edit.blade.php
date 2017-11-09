@@ -12,15 +12,19 @@
 
                 <div class="panel-body">
                     
-                   {!! Form::open(['url' => route('produtos.store')]) !!}
+                   {{ Form::model($produtos, array('route' => array('produtos.update', $produtos->id), 'method' => 'PUT')) }}
                    
-                   {!!Form::input('text' , 'nome' , '',['class' => 'form-control', 'autofocus', 'placeholder' => 'Nome'])!!}
-                   {!!Form::input('text' , 'valor' , '',['class' => 'form-control', 'placeholder' => 'Valor'])!!}
-                   {!!Form::input('text' , 'categoria' , '',['class' => 'form-control', 'placeholder' => 'Categoria'])!!}
-                   {!!Form::submit('Salvar',['class'=>'btn-primary']) !!}
-                   
+                   {!!Form::input('text' , 'nome' , null ,['class' => 'form-control', 'autofocus', 'placeholder' => 'Nome'])!!}
+                   {!!Form::input('text' , 'valor' , null ,['class' => 'form-control', 'placeholder' => 'Valor'])!!}
+                   {!!Form::input('text' , 'categoria' , null ,['class' => 'form-control', 'placeholder' => 'Categoria'])!!}
+                                     
+                </div>
+                <div class="panel-body">
+                    
+                   {!!Form::submit('Salvar',['class'=>'btn-primary btn btn-md']) !!}
+                   <a href="{{ route('produtos.index') }}" class="btn btn-md btn-warning">Voltar</a>
                    {!! Form::close() !!}
-                
+                   
                 </div>
             </div>
         </div>
