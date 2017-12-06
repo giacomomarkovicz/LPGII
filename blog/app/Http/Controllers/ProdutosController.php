@@ -4,6 +4,7 @@ namespace Laravel\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+
 class ProdutosController extends Controller
 {
     public function __construct()
@@ -21,14 +22,18 @@ class ProdutosController extends Controller
         return view('produtos.create');
     }
     
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $produto = new \Laravel\Produto();
-        
-        $produto = $produto->create($request->all());
-                
-        \Session::flash('novo','Produto cadastrado com sucesso!');
-        
-        return \Illuminate\Support\Facades\Redirect::to (route('produtos.index'));
+        $produto->nome = $request->input('nome');
+        $produto->valor = $request->input('valor');
+        $produto->categoria = $request->input('categoria');
+
+        if($produto->save()) {
+            return redirect()->route('produtos.index')->with('novo', 'Produto cadastrado com sucesso.');
+        } else {
+            return redirect()->route('index.create')->with('error_message', 'Houve um erro ao cadastrar o produto.');
+        }
     }
     
     public function edit($id) {

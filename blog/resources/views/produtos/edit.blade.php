@@ -18,13 +18,14 @@
                    {!!Form::input('text' , 'valor' , null ,['class' => 'form-control', 'placeholder' => 'Valor'])!!}
                    {!!Form::input('text' , 'categoria' , null ,['class' => 'form-control', 'placeholder' => 'Categoria'])!!}
                                      
-                </div>
+                
                 <div class="panel-body">
                     
                    {!!Form::submit('Salvar',['class'=>'btn-primary btn btn-md']) !!}
                    <a href="{{ route('produtos.index') }}" class="btn btn-md btn-warning">Voltar</a>
                    {!! Form::close() !!}
                    
+                </div>   
                 </div>
             </div>
         </div>
